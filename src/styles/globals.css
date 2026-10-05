@@ -1,0 +1,90 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-background: #131212;
+  --color-surface: #1a1919;
+  --color-surface-raised: #211f1f;
+  --color-border: #2d2a2a;
+  --color-foreground: #f4f1ee;
+  --color-muted: #a29d98;
+  --color-subtle: #6e6965;
+  --color-primary: #d42a2c;
+  --color-primary-hover: #b42022;
+  --color-primary-soft: rgb(212 42 44 / 0.14);
+  --color-primary-glow: rgb(212 42 44 / 0.35);
+  --color-success: #3fb950;
+
+  --shadow-neon: 0 0 36px 8px var(--color-primary-glow), 0 0 96px 24px var(--color-primary-soft);
+
+  --text-display: clamp(3.4rem, 9vw, 7rem);
+  --text-display--line-height: 0.86;
+  --text-heading: clamp(2.6rem, 6.5vw, 5.25rem);
+  --text-heading--line-height: 0.9;
+  --text-title: clamp(1.6rem, 2.6vw, 2.1rem);
+  --text-title--line-height: 1;
+
+  --tracking-label: 0.24em;
+
+  --spacing-section: clamp(5.5rem, 11vw, 9.5rem);
+  --container-content: 76rem;
+  --container-prose: 40rem;
+
+  --animate-marquee: marquee 48s linear infinite;
+  --animate-blink: blink 1.6s ease-in-out infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.25;
+    }
+  }
+}
+
+@theme inline {
+  --font-display: var(--font-big-shoulders), 'Arial Narrow', 'Helvetica Neue', sans-serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, 'SFMono-Regular', monospace;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply cursor-default bg-background font-sans text-foreground antialiased;
+  }
+
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']) {
+    @apply cursor-pointer;
+  }
+
+  ::selection {
+    @apply bg-primary text-foreground;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-primary;
+  }
+}
